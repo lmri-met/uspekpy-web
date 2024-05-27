@@ -9,10 +9,71 @@
 {% endblock %}
 
 {% block content %}
-<h1>LMRI Web</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna
-    aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis
-    aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat
-    cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<section class="text-center container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light mb-4">LMRI Toolkit</h1>
+            <p class="lead text-body-primary">
+                We're glad you're here! The <span class="text-primary">LMRI Toolkit</span> offers a variety of tools to
+                help you with different tasks related to <span class="text-primary">ionizing radiation metrology</span>.
+            </p>
+            <p class="lead text-body-secondary">
+                These tools are developed by the LMRI, which is the Spanish National Metrology Institute for ionizing
+                radiation. We aim to make them easy to find and use. Thank you for visiting, and we hope you find what
+                you need.
+            </p>
+            <!-- Card grid layout -->
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                <div class="col">
+                    <div class="card text-bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">USpekPy Web</h5>
+                            <p class="card-text">Compute mean radiation protection quantities for a simulated x-ray
+                                spectrum with uncertainties using Monte Carlo techniques</p>
+                            <a href="{{ url_for('uspekpy') }}"
+                               class="btn btn-outline-light rounded-circle stretched-link"><i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">User guide</h5>
+                            <p class="card-text">Looking for help with USpekPy? Check out our user guide for simple
+                                instructions and useful tips to get you started.</p>
+                            <a href="{{ url_for('user_guide') }}"
+                               class="btn btn-outline-light rounded-circle stretched-link"><i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- More cards
+                <div class="col">
+                    <div class="card text-bg-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content.</p>
+                            <a href="#" class="btn btn-outline-light rounded-circle stretched-link"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-bg-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                            <a href="#" class="btn btn-outline-light rounded-circle stretched-link"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

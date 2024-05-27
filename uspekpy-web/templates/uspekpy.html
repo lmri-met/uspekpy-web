@@ -3,8 +3,9 @@
 {% block title %}USpekPy web - {% endblock %}
 
 {% block active %}
-<a class="nav-link" href="/">Home</a>
-<a class="nav-link active" aria-current="page" href="/uspekpy">USpekPy</a>
+<a class="nav-link" href="{{ url_for('index') }}">Home</a>
+<a class="nav-link active" aria-current="page" href="{{ url_for('uspekpy') }}">USpekPy</a>
+<a class="nav-link" href="{{ url_for('user_guide') }}">User guide</a>
 {% endblock %}
 
 {% block content %}

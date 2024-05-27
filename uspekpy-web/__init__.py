@@ -11,3 +11,8 @@ def index():
 @app.route('/uspekpy')
 def uspekpy():
     return render_template('uspekpy.html')
+
+
+@app.route('/user-guide')
+def user_guide():
+    return render_template('user_guide.html')

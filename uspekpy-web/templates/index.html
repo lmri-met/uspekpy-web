@@ -3,95 +3,22 @@
 {% block title %}{% endblock %}
 
 {% block active %}
-<a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
-<a class="nav-link" href="{{ url_for('uspekpy') }}">USpekPy</a>
-<a class="nav-link" href="{{ url_for('user_guide') }}">User guide</a>
+<a class="nav-link" href="{{ url_for('single') }}">Single case simulation</a>
+<a class="nav-link" href="{{ url_for('batch') }}">Batch simulation</a>
 {% endblock %}
 
 {% block content %}
 
-<section class="text-center container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <h1 class="fw-light mb-4">LMRI Toolkit</h1>
-            <p class="lead text-body-primary">
-                We're glad you're here! The <span class="text-primary">LMRI Toolkit</span> offers a variety of tools to
-                help you with different tasks related to <span class="text-primary">ionizing radiation metrology</span>.
-            </p>
-            <p class="lead text-body-secondary">
-                These tools are developed by the LMRI, which is the Spanish National Metrology Institute for ionizing
-                radiation. We aim to make them easy to find and use. Thank you for visiting, and we hope you find what
-                you need.
-            </p>
-        </div>
-    </div>
-</section>
+<h1>USpekPy Web</h1>
+<p>
+    <span class="text-primary">USpekPy web</span> is a web application that allows you to compute mean radiation protection quantities for a simulated x-ray spectrum with uncertainties using Monte Carlo techniques.
+    It allows to compute the mean values and uncertainties of the following <span class="text-primary">integral quantities</span>: the first and second half-value layer for aluminium and copper, the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient.
+    USpekPy web is based on <span class="text-primary">USpekPy</span> and <span class="text-primary">SpekPy</span> Python packages.
+    USpekPy web allows you to simulate a <span class="text-primary">single case</span> or a <span class="text-primary">batch of cases</span>.
+    A single case is defined for a specific x-ray radiation quality and a specific operational magnitude at a specific irradiation angle.
+</p>
 
-<section class="text-center container">
-    <div class="row">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <!-- Card grid layout -->
-            <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
-                <div class="col">
-                    <div class="card text-bg-primary">
-                        <div class="card-body">
-                            <h5 class="card-title">USpekPy Web</h5>
-                            <p class="card-text">Compute mean radiation protection quantities for a simulated x-ray
-                                spectrum with uncertainties using Monte Carlo techniques</p>
-                            <a href="{{ url_for('user_guide') }}"
-                               class="btn btn-outline-light rounded-circle stretched-link border border-2">
-                                <i class="bi bi-arrow-right h3"></i>
-
-                            </a>
-                            <div class="mt-4">
-                                <span class="border border-light rounded-5 px-2 py-1 mx-1">x-rays</span>
-                                <span class="border border-light rounded-5 px-2 py-1 mx-1">spectrometry</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-bg-success">
-                        <div class="card-body">
-                            <h5 class="card-title">User guide</h5>
-                            <p class="card-text">Looking for help with USpekPy? Check out our user guide for simple
-                                instructions and useful tips to get you started.</p>
-                            <a href="{{ url_for('user_guide') }}"
-                               class="btn btn-outline-light rounded-circle stretched-link border border-2">
-                                <i class="bi bi-arrow-right h3"></i>
-
-                            </a>
-                            <div class="mt-4">
-                                <span class="border border-light rounded-5 px-2 py-1 mx-1">documentation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- More cards
-                <div class="col">
-                    <div class="card text-bg-secondary">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <a href="#" class="btn btn-outline-light rounded-circle stretched-link"><i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-bg-danger">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <a href="#" class="btn btn-outline-light rounded-circle stretched-link"><i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
-        </div>
-    </div>
-</section>
+<a href="{{ url_for('single') }}" class="btn btn-primary rounded-pill" role="button">Single case simulation</a>
+<a href="{{ url_for('batch') }}" class="btn btn-primary rounded-pill" role="button">Batch simulation</a>
 
 {% endblock %}

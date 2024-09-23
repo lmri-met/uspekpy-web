@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}Single case - {% endblock %}
+
+{% block active %}
+<a class="nav-link active" href="{{ url_for('single') }}">Single case simulation</a>
+<a class="nav-link" href="{{ url_for('batch') }}">Batch simulation</a>
+{% endblock %}
+
+{% block content %}
+<h1>USpekPy Web</h1>
+<h2>Single case simulation</h2>
+<!-- Input form to run a single case simulation -->
+<form style="display:block" id="singleForm" class="my-2">
+    <div class="row">
+        <div class="col-lg">
+            <!-- General parameters -->
+            <label class="h5">General parameters</label>
+            <div class="row mb-2">
+                <label for="qualitySeries" class="col-sm-5 col-form-label">Radiation quality series</label>
+                <div class="col-sm-5">
+                    <select class="form-select" aria-label="Select quality series" id="qualitySeries">
+                        <option selected>Select</option>
+                        <option value="N">N</option>
+                        <option value="L">L</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="radiationQuality" class="col-sm-5 col-form-label">Radiation quality</label>
+                <div class="col-sm-5">
+                    <select class="form-select" aria-label="Select radiation quality" id="radiationQuality">
+                        <option selected disabled>Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="operationalQuantity" class="col-sm-5 col-form-label">Operational quantity</label>
+                <div class="col-sm-5">
+                    <select class="form-select" aria-label="Default select example" id="operationalQuantity">
+                        <option selected>Select</option>
+                        <option value="1">H*(10)</option>
+                        <option value="2">Hp(0.03, slab)</option>
+                        <option value="3">Hp(0.7, slab)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="irrAngle" class="col-sm-5 col-form-label">Irradiation angle</label>
+                <div class="col-sm-5"><input type="number" class="form-control" id="irrAngle" placeholder="0"></div>
+                <div class="col-sm-2"><div id="irrAngleHelp" class="form-text">deg</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="sims" class="col-sm-5 col-form-label">Simulations number</label>
+                <div class="col-sm-5"><input type="number" class="form-control" id="sims" placeholder="10"></div>
+            </div>
+            <!-- Coefficients -->
+            <div><label class="h5">Coefficients in terms of energy</label></div>
+            <label class="mb-2">Mass energy transfer coefficients of air</label>
+            <div class="row mb-2">
+                <label for="transCoefs" class="col-sm-2 col-form-label">Values</label>
+                <div class="col-sm-8"><input type="file" class="form-control" id="transCoefs"></div>
+                <div class="col-sm-2"><div id="transCoefsHelp" class="form-text">(keV, cm²/g)</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="transCoefsUnc" class="col-sm-2 col-form-label">Uncertainty</label>
+                <div class="col-sm-8"><input type="number" class="form-control" id="transCoefsUnc" placeholder="0"></div>
+                <div class="col-sm-2"><div id="transCoefsUncHelp" class="form-text">%</div></div>
+            </div>
+            <label class="mb-2">Mono-energetic K to H conversion coefficients</label>
+            <div class="row mb-2">
+                <label for="conCoefs" class="col-sm-2 col-form-label">Values</label>
+                <div class="col-sm-8"><input type="file" class="form-control" id="conCoefs"></div>
+                <div class="col-sm-2"><div id="conCoefsHelp" class="form-text">(keV, Sv/Gy)</div></div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <!-- Parameters of x-ray tube -->
+            <label class="h5">Parameters of x-ray tube</label>
+            <div class="row mb-2">
+                <label for="al" class="col-sm-4 col-form-label">Al filter width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="al" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="alHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="alUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="alUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="cu" class="col-sm-4 col-form-label">Cu filter width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="cu" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="cuHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="cuUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="cuUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="sn" class="col-sm-4 col-form-label">SN filter width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="sn" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="snHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="snUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="snUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="pb" class="col-sm-4 col-form-label">Pb filter width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="pb" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="pbHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="pbUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="pbUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="be" class="col-sm-4 col-form-label">Be filter width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="be" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="beHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="beUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="beUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="air" class="col-sm-4 col-form-label">Air gap width</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="air" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="airHelp" class="form-text">mm</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="airUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="airUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="kv" class="col-sm-4 col-form-label">Peak kilovoltage</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="kv" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="kvHelp" class="form-text">kV</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="kvUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="kvUncHelp" class="form-text">%</div></div>
+            </div>
+            <div class="row mb-2">
+                <label for="anode" class="col-sm-4 col-form-label">Anode angle</label>
+                <div class="col-sm-3"><input type="number" class="form-control" id="anode" placeholder="Value"></div>
+                <div class="col-sm-1"><div id="anodeHelp" class="form-text">deg</div></div>
+                <div class="col-sm-3"><input type="number" class="form-control" id="anodeUnc" placeholder="Uncertainty"></div>
+                <div class="col-sm-1"><div id="anodeUncHelp" class="form-text">%</div></div>
+            </div>
+            <button type="submit" class="btn btn-primary float-end mt-5">Submit</button>
+        </div>
+    </div>
+</form>
+
+<!-- JavaScript modify radiation quality select options in terms of selected radiation quality series -->
+<script>
+    const qualitySeriesSelect = document.getElementById('qualitySeries');
+    const radiationQualitySelect = document.getElementById('radiationQuality');
+
+    qualitySeriesSelect.addEventListener('change', function () {
+        const selectedQualitySeries = this.value;
+        if (selectedQualitySeries) {
+            radiationQualitySelect.disabled = false;
+            // Remove existing options
+            while (radiationQualitySelect.firstChild) {
+                radiationQualitySelect.firstChild.remove();
+            }
+            // Create new options based on the selected subject
+            if (selectedQualitySeries === 'N') {
+                addOption(radiationQualitySelect, 'N30', 'N30');
+                addOption(radiationQualitySelect, 'N60', 'N60');
+            } else if (selectedQualitySeries === 'L') {
+                addOption(radiationQualitySelect, 'L30', 'L30');
+                addOption(radiationQualitySelect, 'L60', 'L60');
+            }
+        } else {
+            radiationQualitySelect.disabled = true;
+            // Remove existing options
+            while (radiationQualitySelect.firstChild) {
+                radiationQualitySelect.firstChild.remove();
+            }
+            // Add default disabled option
+            addOption(radiationQualitySelect, '', 'Select radiation quality', true);
+        }
+    });
+
+    function addOption(select, value, text, disabled = false) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.text = text;
+        option.disabled = disabled;
+        select.appendChild(option);
+    }
+</script>
+{% endblock %}

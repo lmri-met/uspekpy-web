@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Batch simulation - {% endblock %}
+
+{% block active %}
+<a class="nav-link" href="{{ url_for('single') }}">Single case simulation</a>
+<a class="nav-link active" href="{{ url_for('batch') }}">Batch simulation</a>
+{% endblock %}
+
+{% block content %}
+<h1>USpekPy Web</h1>
+<h2>Batch simulation</h2>
+
+<form style="display:block" id="batchForm" class="my-2">
+    <div class="row mb-2">
+        <label for="input" class="col-sm-2 col-form-label">Select input file</label>
+        <div class="col-sm-8"><input type="file" class="form-control" id="input" aria-describedby="inputHelp" accept=".csv,.xls,.xlsx" ></div>
+        <div class="col-sm-2"><div id="inputHelp" class="form-text">CSV or Excel files</div></div>
+    </div>
+    <div class="row mb-2">
+        <label for="sheet" class="col-sm-2 col-form-label">Excel sheet name</label>
+        <div class="col-sm-8"><input type="text" class="form-control" id="sheet" aria-describedby="sheetHelp"></div>
+        <div class="col-sm-2"><div id="sheetHelp" class="form-text">Only for Excel input files</div></div>
+    </div>
+    <div class="row mb-2">
+        <label for="output" class="col-sm-2 col-form-label">Output file name</label>
+        <div class="col-sm-8"><input type="text" class="form-control" id="output"></div>
+        <div class="col-sm-2"><button type="submit" class="btn btn-primary">Submit</button></div>
+    </div>
+</form>
+{% endblock %}
